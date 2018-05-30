@@ -11,13 +11,13 @@
 
 
 
-    <!--<script type="text/javascript" src="js/babel/babel.js"></script>
+    <script type="text/javascript" src="js/babel/babel.js"></script>
 
 
 
 
 
-    <script type="text/javascript" src="js/lib/dummy.js"></script>-->
+    <script type="text/javascript" src="js/lib/dummy.js"></script>
 
 
 
@@ -27,7 +27,7 @@
 
 
     <link rel="stylesheet" type="text/css" data-name="vs/editor/editor.main" href="https://unpkg.com/monaco-editor@0.8.3/min/vs/editor/editor.main.css">
-    <!--<link rel="stylesheet" type="text/css" href="/css/result-light.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
 
 
@@ -36,24 +36,16 @@
 
 
 
-    <!--<style type="text/css" >
-        html, body, #container {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-    </style>-->
+
 
     <link type="text/css" rel="stylesheet" href="js/min/editor/stil.css" />
 
 
-    <title>App - 49258255502</title>
-
+    <link href="global.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/bootstrap.min4.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="js/editor_index_style.css" crossorigin="anonymous" />
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="editor.js" type="text/javascript"></script>
 
 
     <style>
@@ -104,10 +96,10 @@
         window.MonacoEnvironment = { getWorkerUrl: () => proxy };
 
         let proxy = URL.createObjectURL(new Blob([`
-            self.MonacoEnvironment = {
-                baseUrl: 'https://unpkg.com/monaco-editor@0.8.3/min/'
-            };
-            importScripts('https://unpkg.com/monaco-editor@0.8.3/min/vs/base/worker/workerMain.js');
+                self.MonacoEnvironment = {
+                    baseUrl: 'https://unpkg.com/monaco-editor@0.8.3/min/'
+                };
+                importScripts('https://unpkg.com/monaco-editor@0.8.3/min/vs/base/worker/workerMain.js');
 `], { type: 'text/javascript' }));
 
         require(["vs/editor/editor.main"], function () {
@@ -246,7 +238,35 @@
 
 
 
-        
+        <ul class="nav nav-tabs TABM" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">HTML</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Css (Style</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#references" role="tab" data-toggle="tab">JavaScript</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#ref" role="tab" data-toggle="tab">JavaScript</a>
+
+            </li>
+        </ul>
+
+        <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="profile">
+            <textarea id="html" value="" placeholder="HTML" autocapitalize="off" autofocus></textarea>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="buzz">
+            <textarea id="css" value="" placeholder="CSS" autocapitalize="off"></textarea>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="references">        <textarea id="js" value="" placeholder="JavaScript" autocapitalize="off"></textarea></div>
+        <div role="tabpanel" class="tab-pane fade" id="ref">
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+
 
         <div id="container" data-keybinding-context="1" data-mode-id="javascript">
             <!--        <div class="monaco-editor vs-dark" style="width: 631px; height: 359px;"> -->
@@ -274,11 +294,14 @@
 
             <div data-mprt="2" class="overflowingContentWidgets">
                 <div class="monaco-editor-hover hidden" tabindex="0" widgetid="editor.contrib.modesContentHoverWidget" style="position: absolute; max-width: 631px; visibility: hidden;"><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="monaco-editor-hover-content" style="overflow: hidden; font-size: 14px; line-height: 19px; max-height: 250px;"></div><div class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px;"></div></div><div class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px;"></div></div><div class="shadow"></div><div class="shadow"></div><div class="shadow top-left-corner"></div></div></div><div class="editor-widget parameter-hints-widget" widgetid="editor.widget.parameterHintsWidget" style="font-size: 14px; max-height: 250px; position: absolute; max-width: 631px; visibility: hidden;"><div class="wrapper"><div class="buttons"><div class="button previous"></div><div class="button next"></div></div><div class="overloads"></div><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="body" style="overflow: hidden;"><div class="signature"></div><div class="docs"></div></div><div class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px;"></div></div><div class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px;"></div></div><div class="shadow"></div><div class="shadow"></div><div class="shadow top-left-corner"></div></div></div></div><div class="monaco-editor rename-box" widgetid="__renameInputWidget" style="height: 19px; position: absolute; max-width: 631px; visibility: hidden;">
-                    <input class="rename-input" type="text" aria-label="Rename input. Type new name and press Enter to commit." style="font-family: Consolas, &quot;Courier New&quot;, monospace; font-weight: normal; font-size: 14px;">
+                    <input class="rename-input" id="html" type="text" aria-label="Rename input. Type new name and press Enter to commit." style="font-family: Consolas, &quot;Courier New&quot;, monospace; font-weight: normal; font-size: 14px;">
                 </div>
                 <div class="editor-widget suggest-widget" widgetid="editor.widget.suggestWidget" style="position: absolute; max-width: 631px; visibility: hidden;"><div class="message" style="display: none;"></div><div class="tree"><div class="monaco-list" role="tree" tabindex="0"><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="monaco-list-rows" style="overflow: hidden; height: 0px;"></div><div class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px;"></div></div><div class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px;"></div></div></div></div></div><div class="details" style="font-size: 14px; display: none;"><div class="header"><span class="title" style="font-family: Consolas, &quot;Courier New&quot;, monospace;"><span class="monaco-highlighted-label"></span></span><span class="go-back" title="Go back" style="height: 19px; width: 19px;"></span></div><div class="monaco-scrollable-element " role="presentation" style="position: relative; overflow: hidden;"><div class="body" style="overflow: hidden;"><p class="type" style="font-family: Consolas, &quot;Courier New&quot;, monospace;"></p><p class="docs"></p></div><div class="invisible scrollbar horizontal" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; height: 10px;"></div></div><div class="invisible scrollbar vertical" style="position: absolute;"><div class="slider" style="position: absolute; top: 0px; left: 0px; width: 10px;"></div></div><div class="shadow"></div><div class="shadow"></div><div class="shadow top-left-corner"></div></div></div></div>
             </div><div class="context-view monaco-menu-container bottom left builder-hidden" aria-hidden="true" style="top: 107px; left: 121px; width: initial;"><div class="monaco-menu"></div></div>
         </div>
+
+
+
 
 
         <script>
@@ -310,12 +333,17 @@
             if (event.keyCode == 123) {
                 return false;
             }
-        }  
+        }
     </script>
 
     <script src="/js/main.js"></script>
 
+    <!-- TEST -->
+    <script src="js/appframework/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="js/appframework/popper.min.js" crossorigin="anonymous"></script>
+    <script src="js/appframework/bootstrap.min.js" crossorigin="anonymous"></script>
 
+    <script src="js/main.js"></script>
 
 </body>
 </html>
